@@ -3,6 +3,7 @@ Locally Linear Meta Embedding Learning.
 
 See the following paper (and please cite it) if you use the code in your work.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @article{DBLP:journals/corr/abs-1709-06671,
   author    = {Danushka Bollegala and
                Kohei Hayashi and
@@ -18,4 +19,4 @@ See the following paper (and please cite it) if you use the code in your work.
   biburl    = {http://dblp.org/rec/bib/journals/corr/abs-1709-06671},
   bibsource = {dblp computer science bibliography, http://dblp.org}
 }
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
