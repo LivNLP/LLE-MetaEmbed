@@ -1,0 +1,1 @@
+Download and save the source word embeddings in this folder

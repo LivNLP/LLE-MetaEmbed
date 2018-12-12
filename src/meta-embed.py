@@ -10,7 +10,7 @@ from sklearn.utils.extmath import randomized_svd
 from sklearn.neighbors import NearestNeighbors
 
 
-from repseval.src.wordreps import WordReps
+from wordreps import WordReps
 from scipy.sparse import csr_matrix, eye
 from scipy.sparse.linalg import eigsh
 from scipy.sparse.linalg.eigen.arpack.arpack import ArpackNoConvergence
@@ -274,12 +274,8 @@ def get_common_words(embeddings):
 def perform_embedding(nns, comps):
     print "Neigbourhood size = %d" % nns
     
-    #embed_settings = [("../work/ijcai/glove.42B.300d.txt", 300), ("../work/ijcai/w2v.neg.300d.txt", 300)]
-    embed_settings = [("../work/ijcai/glove.42B.300d.txt", 300), ("../work/ijcai/w2v.neg.300d.txt", 300),
-                     ("../../embeddings/HLBL+100", 100), ("../../embeddings/Huang+50", 50), ("../../embeddings/CW+200", 200)]  
-    #del embed_settings[4]  
-
-    embeddings = []
+    #embed_sett
+    embed_settings = sources.embed_settings
     for (embd_fname, dim) in embed_settings:
         start_time = time.clock()
         sys.stdout.write("Loading %s -- (%d dim) ..." % (embd_fname, dim))
@@ -292,15 +288,14 @@ def perform_embedding(nns, comps):
         embeddings.append(WR)
 
     common_words = get_common_words(embeddings)
-    selected_words = get_selected_words("../work/ijcai/selected-words")
+    selected_words = get_selected_words("../work/selected-words")
     words = []
     for word in selected_words:
         if word in common_words and word not in words:
             words.append(word)
     print "No. of common words =", len(common_words)
     print "Vocabulary size =", len(words)
-    #baseline_concatenate(embeddings, words, "../work/ijcai/all-weighted.concat")
-    ME = meta_embed(embeddings, words, nns, comps, "../work/ijcai/ablation/")
+    ME = meta_embed(embeddings, words, nns, comps, "../work/meta-embeds")
     pass
 
 def save_embedding(words, WR, fname):
