@@ -4,6 +4,7 @@ Locally Linear Meta Embedding Learning.
 """
 
 import numpy
+import sources
 
 from sklearn import manifold
 from sklearn.utils.extmath import randomized_svd
@@ -271,11 +272,19 @@ def get_common_words(embeddings):
     return words
 
 
+def get_selected_words(fname):
+    words = []
+    with open(fname) as F:
+        for line in F:
+            words.append(line.strip())
+    return words
+
 def perform_embedding(nns, comps):
     print "Neigbourhood size = %d" % nns
     
     #embed_sett
     embed_settings = sources.embed_settings
+    embeddings = []
     for (embd_fname, dim) in embed_settings:
         start_time = time.clock()
         sys.stdout.write("Loading %s -- (%d dim) ..." % (embd_fname, dim))
